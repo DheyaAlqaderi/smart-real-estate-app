@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class welcomePage extends StatefulWidget {
   const welcomePage({super.key});
@@ -14,8 +15,8 @@ class _welcomePageState extends State<welcomePage> {
       body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Image.asset(
-                  "assets/images/welcome_image.jpg",
+              SvgPicture.asset(
+                  "assets/images/welcome_image_client.svg",
                 fit: BoxFit.fitWidth,
                 height: 175,
                 width: double.infinity,
@@ -31,7 +32,6 @@ class _welcomePageState extends State<welcomePage> {
                     fontFamily: 'Inter',
                 ),
               ),
-              SizedBox(height: 10.0),
               Text(
                 'الرجاء إدخال التفاصيل الخاصة بك للتسجيل.',
                 textAlign: TextAlign.center,
@@ -56,15 +56,17 @@ class _welcomePageState extends State<welcomePage> {
               GestureDetector(
                 onTap: (){},
                 child: Container(
-                  width: 381,
+                  margin: EdgeInsets.all(5.0),
+                  width: double.infinity,
                   height: 58,
-                  decoration: ShapeDecoration(
-                    color: Color(0xFF1F4C6B),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
+                  child: ElevatedButton(
+                    onPressed: (){},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFF1F4C6B),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0), // Corner radius
+                      ),
                     ),
-                  ),
-                  child: Center(
                     child: Text(
                       'انضم كعميل',
                       textAlign: TextAlign.center,
@@ -80,29 +82,31 @@ class _welcomePageState extends State<welcomePage> {
                 ),
               ),
 
-              Padding(padding: EdgeInsets.all(8.5)),
+
 
               Container(
-                width: 381,
+                margin: EdgeInsets.all(5.0),
+                width: double.infinity,
                 height: 58,
-                decoration: ShapeDecoration(
-                  color: Color(0x00FFAF47),
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(width: 1, color: Color(0xFF1F4C6B)),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                ),
-                child: Center(
-                  child: Text(
-                    'انضم كمروج',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w600,
-                      height: 0,
+                child: ElevatedButton(
+                    onPressed: (){},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(width: 1, color: Color(0xFF1F4C6B)),
+                        borderRadius: BorderRadius.circular(30.0), // Corner radius
+                      ),
                     ),
+                    child: Text(
+                      'انضم كمروج',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w600,
+                        height: 0,
+                      ),
                   ),
                 ),
               ),
