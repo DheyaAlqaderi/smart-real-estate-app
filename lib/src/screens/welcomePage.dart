@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:smart_real_estate_app/src/screens/onBoardingPageClient.dart';
 
 class welcomePage extends StatefulWidget {
   const welcomePage({super.key});
@@ -60,7 +61,12 @@ class _welcomePageState extends State<welcomePage> {
                   width: double.infinity,
                   height: 58,
                   child: ElevatedButton(
-                    onPressed: (){},
+                    onPressed: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => OnBoardingClient()),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF1F4C6B),
                       shape: RoundedRectangleBorder(
@@ -179,9 +185,9 @@ class _welcomePageState extends State<welcomePage> {
                                 Container(
                                   width: 25,
                                   height: 25,
-                                  child: Stack(children: [
-                                      Image(image: AssetImage("assets/images/google_image.jpg")),
-                                      ]),
+                                  child:
+                                      SvgPicture.asset("assets/images/google-icon.svg")
+
                                 ),
                               ],
                             ),
@@ -217,10 +223,13 @@ class _welcomePageState extends State<welcomePage> {
                                 Container(
                                   width: 25,
                                   height: 25,
-                                  child: Stack(children: [
-                                    Image(image: AssetImage("assets/images/facebook_image.jpg")),
-                                  ]),
-                                ),
+                                  child:
+                                    SvgPicture.asset(
+                                        "assets/images/facebook-icon.svg",
+                                      height: 25,
+                                      width: 25,
+                                    )
+                                  ),
                               ],
                             ),
                           ),
