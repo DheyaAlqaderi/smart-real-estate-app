@@ -14,7 +14,7 @@ List<UnbordingContent> contents = [
   ),
   UnbordingContent(
       title: "بيع الممتلكات الخاصة بك بسرعة بنقرة واحدة فقط",
-      image: 'assets/images/Image2.png',
+      image: 'assets/images/first_image.png',
       discription: "احصل على مشترين معتمدين لممتلكاتك من خلال لوحة تحكم سهلة الإدارة! "
   ),
   UnbordingContent(
