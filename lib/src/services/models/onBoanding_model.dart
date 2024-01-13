@@ -10,7 +10,7 @@ List<UnbordingContent> contents = [
   UnbordingContent(
       title: "العثور على أفضل مكان  للبقاء في سعر جيد",
       image: 'assets/images/image1.png',
-      discription: "قم بالتصفية حسب الأثاث والموقع والنوع والسعر"
+      discription: "احصل على مشترين معتمدين لممتلكاتك من خلال لوحة تحكم سهلة الإدارة!"
   ),
   UnbordingContent(
       title: "بيع الممتلكات الخاصة بك بسرعة بنقرة واحدة فقط",

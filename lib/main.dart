@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:smart_real_estate_app/src/screens/SplashScreen.dart';
 import 'package:flutter/services.dart';
+import 'package:smart_real_estate_app/src/ui/screens/SplashScreen.dart';
 
 
-void main() {
+void main() async {
   SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,

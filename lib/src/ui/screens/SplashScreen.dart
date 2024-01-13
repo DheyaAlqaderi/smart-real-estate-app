@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_real_estate_app/src/screens/welcomePage.dart';
+import 'package:smart_real_estate_app/src/ui/screens/welcomePage.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../models/onBoanding_model.dart';
+
+import '../../services/models/onBoanding_model.dart';
+import 'login_signup_page.dart';
+
+
 
 class onBoarding extends StatefulWidget {
   const onBoarding({super.key});
@@ -163,7 +167,10 @@ class _onBoardingState extends State<onBoarding> {
                   onPressed: () {
                     if (currentIndex == contents.length - 1) {
                       // Handle the action when on the last page
-                      print("Continue pressed on the last page");
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => login_signup()),
+                      );
                     } else {
                       // Move to the next page
                       _controller.nextPage(
