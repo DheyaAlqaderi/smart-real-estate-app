@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../services/localdb/Managedb.dart';
+import 'package:smart_real_estate_app/src/services/use_case/UserAuthCase.dart';
 
 
 class login_screen extends StatefulWidget {
@@ -17,6 +17,7 @@ class _login_screenState extends State<login_screen> {
   final TextEditingController emailController = TextEditingController();
 
   final TextEditingController passwordController = TextEditingController();
+  final UserAuthCase _authUseCase = UserAuthCase();
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +58,11 @@ class _login_screenState extends State<login_screen> {
                     height: 58,
                     child: ElevatedButton(
                       onPressed: (){
-
+                        _authUseCase.login(
+                          context,
+                          emailController.text,
+                          passwordController.text,
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xFF1F4C6B),
@@ -80,7 +85,7 @@ class _login_screenState extends State<login_screen> {
                   ),
                   SizedBox(height: 20.0),
                   FutureBuilder<String?>(
-                    future: Managedb.getToken(),
+                    future:null,
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return Center(child: CircularProgressIndicator());
