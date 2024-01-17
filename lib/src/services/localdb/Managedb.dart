@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:smart_real_estate_app/src/services/localdb/LocalDatabase.dart';
 
 class Managedb {
+
   static Future<void> saveToken(String token) async {
     WidgetsFlutterBinding.ensureInitialized();
 

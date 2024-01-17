@@ -1,28 +1,29 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:smart_real_estate_app/src/services/localdb/Managedb.dart';
 import 'package:smart_real_estate_app/src/services/models/User/ClientAbstract.dart';
+
 class ClientAuthRepository extends Client {
   ClientAuthRepository({
     String? userName,
     String? phoneNumber,
     String? email,
     String? password,
-  }) : super(userName: '', phoneNumber: '', email: '', password: '', clientSpecificAttribute: '');
+  }) : super(userName: '', phoneNumber: '', email: '', password: '');
+
   @override
   Future<String?> login(String userName, String password) async {
 
-    final String apiUrl = 'https://dummyjson.com/auth/login';
+    final String _apiUrl = 'https://dummyjson.com/auth/login';
     try {
       final response = await http.post(
-        Uri.parse(apiUrl),
+        Uri.parse(_apiUrl),
         body: {
           'username': userName,
           'password': password,
         },
       );
 
-      if (response.statusCode == 200) {
+      if(response.statusCode == 200) {
         final Map<String, dynamic> data = json.decode(response.body);
         final String token = data['token'];
 
