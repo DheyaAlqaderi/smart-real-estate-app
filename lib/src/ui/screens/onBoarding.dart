@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:smart_real_estate_app/src/ui/screens/homePage.dart';
+import 'package:smart_real_estate_app/src/ui/screens/root_pages.dart';
 
 
 import '../../services/models/onBoanding_model.dart';
@@ -43,7 +45,12 @@ class _onBoardingState extends State<onBoarding> {
                       height: 38,
                       width: 90,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => root_pages()),
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xFFDFDFDF),
                           shape: RoundedRectangleBorder(

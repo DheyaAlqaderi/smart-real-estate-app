@@ -61,18 +61,16 @@ class _root_pagesState extends State<root_pages> {
         children: pages,
       ),
       floatingActionButton: FloatingActionButton(
-
         onPressed: () {
           // Add your FAB's onPressed logic here
         },
         backgroundColor: Colors.grey,
-        child: Icon(Icons.map, color: Colors.black,),
+        child: Text('Map'),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _bottomNavIndex,
-        mouseCursor: MaterialStateMouseCursor.clickable,
         onTap: (index) {
           setState(() {
             _bottomNavIndex = index;
@@ -80,20 +78,20 @@ class _root_pagesState extends State<root_pages> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: buildCustomIcon(iconList[0], 0),
+            icon: iconList[0],
             label: titleList[0],
           ),
           BottomNavigationBarItem(
-            icon: buildCustomIcon(iconList[1], 1),
+            icon: iconList[1],
             label: titleList[1],
 
           ),
           BottomNavigationBarItem(
-            icon: buildCustomIcon(iconList[2], 2),
+            icon: iconList[2],
             label: titleList[2],
           ),
           BottomNavigationBarItem(
-            icon: buildCustomIcon(iconList[3], 3),
+            icon: iconList[3],
             label: titleList[3],
           ),
         ],
@@ -105,7 +103,7 @@ class _root_pagesState extends State<root_pages> {
     return Column(
       children: [
         iconData,
-        SizedBox(height: 3,),
+        SizedBox(),
         if (_bottomNavIndex == index)
           Positioned(
             bottom: 0,
