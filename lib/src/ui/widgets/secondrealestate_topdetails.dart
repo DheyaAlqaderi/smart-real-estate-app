@@ -1,20 +1,48 @@
 import 'package:flutter/material.dart';
 
-class secondrealestate_topdetails extends StatefulWidget {
-  const secondrealestate_topdetails({super.key});
+class second_section extends StatefulWidget {
+   second_section({this.image,this.name,
+    this.address,
+    this.price,
+    this.rating});
 
+      final String? image;
+      final String? name;
+      final String? address;
+      final dynamic price;
+      final dynamic rating;
   @override
-  State<secondrealestate_topdetails> createState() => _secondrealestate_topdetailsState();
+  State<second_section> createState() => _second_sectionState();
 }
 
-class _secondrealestate_topdetailsState extends State<secondrealestate_topdetails> {
-  dynamic width = 268;
-  dynamic hieght = 156;
+class _second_sectionState extends State<second_section> {
 
-  bool selected = true;
-
+  bool _selected = true;
   @override
   Widget build(BuildContext context) {
+    return  secondrealestate_topdetailsState(
+        widget.image,
+        widget.name,
+        widget.address,
+        widget.price,
+        widget.rating);
+  }
+
+
+  Widget secondrealestate_topdetailsState(
+      String? _image,
+      String? _name,
+      String? _address,
+      dynamic _price,
+      dynamic _rating)
+  {
+
+
+    dynamic width = 268;
+    dynamic hieght = 156;
+
+
+
     return TextButton(
       style: ButtonStyle(
       ),
@@ -35,57 +63,63 @@ class _secondrealestate_topdetailsState extends State<secondrealestate_topdetail
               child: Padding(
                 padding: const EdgeInsets.all(5.0),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     SizedBox(height: 8,),
-                    Text(
-                        'high quality apartment dfsgfghsg',
+                    Padding(
+                      padding: const EdgeInsets.only(right: 5),
+                      child: Text(
+                        _name.toString(),
                         maxLines: 1, // Set the maximum number of lines
                         overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontFamily: 'Raleway',
-                        fontSize: 12,
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 0.36,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: 'Raleway',
+                          fontSize: 12,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 0.36,
+                        ),
                       ),
                     ),
-                    SizedBox(height: 15,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          '4.9',
-                          style: TextStyle(
-                            color: Color(0xFF53577A),
-                            fontSize: 8,
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w700,
-                            height: 0.12,
-                          ),
-                        ),
-                        Icon(Icons.star, color: Colors.orange, size: 10,)
-                      ],
-                    ),
-                    SizedBox(height: 15,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'شارع الخمسين خل بهارات',
-                            maxLines: 1, // Set the maximum number of lines
-                            overflow: TextOverflow.ellipsis,
+                    SizedBox(height: 10,),
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            "$_rating  ",
                             style: TextStyle(
                               color: Color(0xFF53577A),
                               fontSize: 8,
-                              fontFamily: 'Raleway',
-                              fontWeight: FontWeight.w400,
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w700,
+                              height: 0.12,
                             ),
                           ),
-                        ),
-                        SizedBox(width: 2,),
-                        Icon(Icons.location_on_sharp,color: Colors.grey, size: 10,)
-                      ],
+                          Icon(Icons.star, color: Colors.orange, size: 10,)
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                              "$_address ",
+                              maxLines: 1, // Set the maximum number of lines
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                color: Color(0xFF53577A),
+                                fontSize: 8,
+                                fontFamily: 'Raleway',
+                                fontWeight: FontWeight.w400,
+                              ),
+                          ),
+                          Icon(Icons.location_on_sharp,color: Colors.grey, size: 10,)
+                        ],
+                      ),
                     ),
                     Expanded(child: SizedBox(height: 10,)),
                     Align(
@@ -97,12 +131,12 @@ class _secondrealestate_topdetailsState extends State<secondrealestate_topdetail
                               maxLines: 1, // Set the maximum number of lines
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
-                              color: Color(0xFF242B5C),
-                              fontSize: 16,
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: 0.48,
-                            ),),
+                                color: Color(0xFF242B5C),
+                                fontSize: 16,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 0.48,
+                              ),),
                           ),
                           Text(
                             'الف',
@@ -117,7 +151,7 @@ class _secondrealestate_topdetailsState extends State<secondrealestate_topdetail
                           ),
                           SizedBox(width: 5,),
                           Text(
-                            '2000',
+                            _price.toString(),
                             style: TextStyle(
                               color: Color(0xFF242B5C),
                               fontSize: 16,
@@ -135,29 +169,29 @@ class _secondrealestate_topdetailsState extends State<secondrealestate_topdetail
                 ),
               ),
             ),
-            image_section()
+            image_section(_image.toString())
           ],
         ),
       ),
     );
   }
 
-  Container image_section() {
+  Container image_section(String image) {
     return Container(
-          width: 126,
-          decoration: ShapeDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/image1.png'),
-              fit: BoxFit.fill,
-            ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
+        width: 126,
+        decoration: ShapeDecoration(
+          image: DecorationImage(
+            image: AssetImage(image),
+            fit: BoxFit.cover,
           ),
-          child: Stack(
-            children: [
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+        child: Stack(
+          children: [
 
-              Positioned(
+            Positioned(
                 top: 8,
                 right: 8,
                 child: Container(
@@ -177,19 +211,20 @@ class _secondrealestate_topdetailsState extends State<secondrealestate_topdetail
                   ),
                   child: IconButton(
                     icon: Icon(Icons.favorite, size: 11,),
-                    color: selected? Colors.white: Colors.red,
+                    color: _selected? Colors.white: Colors.red,
                     onPressed: () {
-                       setState(() {
-                         selected ? selected=false : selected=true;
+                      setState(() {
+                        _selected ? _selected=false : _selected=true;
                       });
+                      
                       // Add your button onPressed logic here
                       print('Button tapped!');
                     },
                   ),
                 )
-              ),
+            ),
 
-              Positioned(
+            Positioned(
                 bottom: 3,
                 right: 5,
                 child: ElevatedButton(
@@ -223,10 +258,13 @@ class _secondrealestate_topdetailsState extends State<secondrealestate_topdetail
                   ),
                 )
 
-              ),
+            ),
 
-            ],
-          )
-        );
+          ],
+        )
+    );
   }
 }
+
+
+

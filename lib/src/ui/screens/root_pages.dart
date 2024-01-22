@@ -26,7 +26,7 @@ class _root_pagesState extends State<root_pages> {
 
   List<SvgPicture> iconList = [
     SvgPicture.asset('assets/images/home-icon.svg'),
-    SvgPicture.asset('assets/images/search-icon.svg'),
+    SvgPicture.asset('assets/images/chat-icon2.svg'),
     SvgPicture.asset('assets/images/favorite-icon.svg'),
     SvgPicture.asset('assets/images/profile-icon.svg'),
   ];
@@ -60,12 +60,34 @@ class _root_pagesState extends State<root_pages> {
         index: _bottomNavIndex,
         children: pages,
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Add your FAB's onPressed logic here
-        },
-        backgroundColor: Colors.grey,
-        child: Text('Map'),
+      floatingActionButton: Container(
+        width: 60,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.grey,
+
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.3),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: Offset(0, 3),
+            ),
+          ],
+        ),
+        child: FloatingActionButton(
+          onPressed: () {
+            // Add your custom onPressed behavior here
+            print('FloatingActionButton pressed');
+          },
+          tooltip: 'Open the Map',
+          child: Icon(
+            Icons.map,
+            color: Colors.black,
+          ),
+          elevation: 0, // Adjust the elevation as needed
+          backgroundColor: Colors.transparent, // Set the background color as transparent
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
 
@@ -78,20 +100,20 @@ class _root_pagesState extends State<root_pages> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: iconList[0],
+            icon: buildCustomIcon(iconList[0], 0),
             label: titleList[0],
           ),
           BottomNavigationBarItem(
-            icon: iconList[1],
+            icon: buildCustomIcon(iconList[1], 1),
             label: titleList[1],
 
           ),
           BottomNavigationBarItem(
-            icon: iconList[2],
+            icon: buildCustomIcon(iconList[2], 2),
             label: titleList[2],
           ),
           BottomNavigationBarItem(
-            icon: iconList[3],
+            icon: buildCustomIcon(iconList[3], 3),
             label: titleList[3],
           ),
         ],
@@ -103,7 +125,7 @@ class _root_pagesState extends State<root_pages> {
     return Column(
       children: [
         iconData,
-        SizedBox(),
+        SizedBox(height: 6,),
         if (_bottomNavIndex == index)
           Positioned(
             bottom: 0,

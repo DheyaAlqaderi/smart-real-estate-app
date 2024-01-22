@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:smart_real_estate_app/src/ui/widgets/secondrealestate_topdetails.dart';
 import 'package:smart_real_estate_app/src/ui/widgets/topRowList_homepage.dart';
 import '../widgets/SliverAppBarWidget.dart';
+import '../widgets/explorePropertiesWidget.dart';
+import '../widgets/secondrealestate_topdetails.dart';
 
 class homePage extends StatefulWidget {
   const homePage({super.key});
@@ -32,7 +33,7 @@ class _homePageState extends State<homePage> {
   late List<bool> chipSelected = List.generate(realEstateProperties.length, (index) => false);
 
   List<String> propertyImageList = [
-    'assets/images/welcome_image.png',
+    'assets/images/me.JPG',
     'assets/images/image1.png',
     'assets/images/login_image.png',
     'assets/images/image3.png',
@@ -42,7 +43,7 @@ class _homePageState extends State<homePage> {
   ];
 
   List<String> propertyTitleList = [
-    "one",
+    "البرج المثالي",
     "two",
     "three",
     'four',
@@ -50,6 +51,17 @@ class _homePageState extends State<homePage> {
     'six',
     'seven',
   ];
+
+  List<dynamic> propertyPrice = [
+    1000.0,
+    500,
+    6000,
+    100000,
+    54120,
+    5410,
+    7500
+  ];
+
 
 
   @override
@@ -62,7 +74,7 @@ class _homePageState extends State<homePage> {
               delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
                   return Padding(
-                      padding: EdgeInsets.all(5),
+                      padding: EdgeInsets.all(3),
                       child: Column(
                         children: [
                           SingleChildScrollView(
@@ -162,12 +174,125 @@ class _homePageState extends State<homePage> {
                                 propertyImageList.length,
                                     (index) => Padding(
                                   padding:  EdgeInsets.only(right: 10.0),
-                                  child: secondrealestate_topdetails(),
+                                  child:  second_section(image: propertyImageList[index],name: propertyTitleList[index], address: "fifth street", price: 2000, rating: 4.5),
                                 ),
                               ),
                             ),
                           ),
-                          SizedBox(height: 150),
+                          SizedBox(height: 25),
+                          Row(
+                            children: <Widget>[
+                              Container(
+                                height: 38,
+                                width: 90,
+                                child: TextButton(
+                                    onPressed: () {},
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.transparent,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(100),
+                                      ),
+                                    ),
+                                    child: Text(
+                                      'استكشف',
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                        color: Color(0xFF31A8EC),
+                                        fontSize: 10,
+                                        fontFamily: 'Raleway',
+                                        fontWeight: FontWeight.w600,
+                                        height: 0.09,
+                                        letterSpacing: 0.30,
+                                      ),
+
+                                    )
+                                ),
+                              ),
+                              Spacer(flex: 3),
+                              Container(
+                                  child: Text(
+                                    'الوكيل العقاري الأعلى',
+                                    style: TextStyle(
+                                      color: Color(0xFF242B5C),
+                                      fontSize: 18,
+                                      fontFamily: 'Lato',
+                                      fontWeight: FontWeight.w700,
+                                      height: 0,
+                                      letterSpacing: 0.54,
+                                    ),
+                                  )
+                              ),
+                            ],
+                          ),
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: List.generate(
+                                propertyImageList.length,
+                                    (index) => Padding(
+                                  padding:  EdgeInsets.only(right: 10.0),
+                                  child:  buildColumn(index),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 25,),
+                          Row(
+                            children: <Widget>[
+                              Container(
+                                height: 38,
+                                width: 90,
+                                child: TextButton(
+                                    onPressed: () {},
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.transparent,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(100),
+                                      ),
+                                    ),
+                                    child: Text(
+                                      'استكشف',
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                        color: Color(0xFF31A8EC),
+                                        fontSize: 10,
+                                        fontFamily: 'Raleway',
+                                        fontWeight: FontWeight.w600,
+                                        height: 0.09,
+                                        letterSpacing: 0.30,
+                                      ),
+
+                                    )
+                                ),
+                              ),
+                              Spacer(flex: 3),
+                              Container(
+                                  child: Text(
+                                    'استكشاف العقارات القريبة',
+                                    style: TextStyle(
+                                      color: Color(0xFF242B5C),
+                                      fontSize: 18,
+                                      fontFamily: 'Lato',
+                                      fontWeight: FontWeight.w700,
+                                      height: 0,
+                                      letterSpacing: 0.54,
+                                    ),
+                                  )
+                              ),
+                            ],
+                          ),
+                          Wrap(
+                            crossAxisAlignment: WrapCrossAlignment.start,
+
+                            spacing: 30.0, // Adjust the spacing between items
+                            runSpacing: 10.0, // Adjust the spacing between lines
+                            children: List.generate(
+                              propertyImageList.length,
+                                  (index) => exploreProperty(image: propertyImageList[index], price: propertyPrice[index], name: propertyTitleList[index], address: propertyTitleList[index]),
+                            ),
+                          ),
+                          SizedBox(height: 50,)
+
                         ],
                       ),
                     );
@@ -181,6 +306,36 @@ class _homePageState extends State<homePage> {
       // bottomNavigationBar: BottomNavigationBar(
       //   items: ,
       // ),
+    );
+  }
+
+  Column buildColumn(int index) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: CircleAvatar(
+            radius: 35,
+            backgroundImage: AssetImage(propertyImageList[index]),
+            backgroundColor: Colors.white,
+          ),
+        ),
+        SizedBox(height: 4,),
+        Text(
+          propertyTitleList[index],
+          maxLines: 1, // Set the maximum number of lines
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            color: Color(0xFF242B5C),
+            fontSize: 10,
+            fontFamily: 'Raleway',
+            fontWeight: FontWeight.w500,
+            height: 0,
+            letterSpacing: 0.30,
+          ),
+        )
+      ],
     );
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:smart_real_estate_app/src/ui/screens/root_pages.dart';
 import 'onBoarding.dart';
 
 class welcomePage extends StatefulWidget {
@@ -62,7 +63,8 @@ class _welcomePageState extends State<welcomePage> {
                   height: 58,
                   child: ElevatedButton(
                     onPressed: (){
-
+                      Navigator.pushReplacement(
+                        context, MaterialPageRoute(builder: (context) => root_pages()));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF1F4C6B),

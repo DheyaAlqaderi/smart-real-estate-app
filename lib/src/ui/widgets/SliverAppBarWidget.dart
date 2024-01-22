@@ -45,9 +45,10 @@ class _SliverAppBarWidgetState extends State<SliverAppBarWidget> {
         ),
 
       ],
-      expandedHeight: 300.0,
+      expandedHeight:250,
       floating: true,
       pinned: true,
+      automaticallyImplyLeading: false,
       flexibleSpace: FlexibleSpaceBar(
         background: Container(
             width: 100.0,
@@ -63,7 +64,7 @@ class _SliverAppBarWidgetState extends State<SliverAppBarWidget> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Padding(padding: EdgeInsets.all(70)),
+                Padding(padding: EdgeInsets.all(55)),
                 Padding(
                   padding: const EdgeInsets.only(right: 20),
                   child: Text(

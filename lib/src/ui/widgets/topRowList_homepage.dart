@@ -31,7 +31,7 @@ Widget makeItem(String image, String title) {
                 begin: Alignment.bottomCenter,
                 colors: [
 
-                  Colors.white.withOpacity(0.1),
+                  Colors.black.withOpacity(0.1),
                   Colors.black.withOpacity(0.6),
                 ]
               ),
