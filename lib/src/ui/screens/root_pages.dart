@@ -92,6 +92,7 @@ class _root_pagesState extends State<root_pages> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
 
       bottomNavigationBar: BottomNavigationBar(
+
         currentIndex: _bottomNavIndex,
         onTap: (index) {
           setState(() {
@@ -125,7 +126,6 @@ class _root_pagesState extends State<root_pages> {
     return Column(
       children: [
         iconData,
-        SizedBox(height: 6,),
         if (_bottomNavIndex == index)
           Positioned(
             bottom: 0,
