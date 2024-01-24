@@ -66,8 +66,15 @@ class _homePageState extends State<homePage> {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body: CustomScrollView(
+    return  Container(
+      child: Scaffold(
+        body: buildCustomScrollView(),
+      ),
+    );
+  }
+
+  CustomScrollView buildCustomScrollView() {
+    return CustomScrollView(
         slivers: <Widget>[
           SliverAppBarWidget(),
             SliverList(
@@ -302,11 +309,7 @@ class _homePageState extends State<homePage> {
               ),
             ),
           ],
-      ),
-      // bottomNavigationBar: BottomNavigationBar(
-      //   items: ,
-      // ),
-    );
+      );
   }
 
   Column buildColumn(int index) {
@@ -338,8 +341,4 @@ class _homePageState extends State<homePage> {
       ],
     );
   }
-
-
-
 }
-

@@ -38,7 +38,7 @@ class _SliverAppBarWidgetState extends State<SliverAppBarWidget> {
         Padding(
           padding: EdgeInsets.only(right: 10, top: 5),
           child: CircleAvatar(
-            radius: 22,
+            radius: 28,
             backgroundImage: AssetImage('assets/images/me.JPG'),
             backgroundColor: Colors.white,
           ),

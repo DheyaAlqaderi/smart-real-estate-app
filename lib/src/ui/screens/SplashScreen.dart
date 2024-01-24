@@ -12,7 +12,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void onPressed() {
     // Function to be executed when the button is pressed
-    Navigator.pushReplacement(
+    Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => welcomePage()),
     );
