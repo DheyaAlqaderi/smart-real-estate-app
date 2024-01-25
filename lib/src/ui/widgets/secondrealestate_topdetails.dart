@@ -37,12 +37,8 @@ class _second_sectionState extends State<second_section> {
       dynamic _rating)
   {
 
-
     dynamic width = 268;
     dynamic hieght = 156;
-
-
-
     return TextButton(
       style: ButtonStyle(
       ),
@@ -209,17 +205,19 @@ class _second_sectionState extends State<second_section> {
                       ),
                     ],
                   ),
-                  child: IconButton(
-                    icon: Icon(Icons.favorite, size: 11,),
-                    color: _selected? Colors.white: Colors.red,
-                    onPressed: () {
-                      setState(() {
-                        _selected ? _selected=false : _selected=true;
-                      });
-                      
-                      // Add your button onPressed logic here
-                      print('Button tapped!');
-                    },
+                  child: Center(
+                    child: IconButton(
+                      icon: Icon(Icons.favorite, size: 11,),
+                      color: _selected? Colors.white: Colors.red,
+                      onPressed: () {
+                        setState(() {
+                          _selected ? _selected=false : _selected=true;
+                        });
+
+                        // Add your button onPressed logic here
+                        print('Button tapped!');
+                      },
+                    ),
                   ),
                 )
             ),

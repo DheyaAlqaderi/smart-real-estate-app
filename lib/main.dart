@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:smart_real_estate_app/src/ui/screens/MapPage.dart';
-import 'package:smart_real_estate_app/src/ui/screens/root_pages.dart';
+import 'package:smart_real_estate_app/src/ui/screens/SplashScreen.dart';
 
 
 void main() async {
@@ -22,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MapPage(),
+      home: SplashScreen(),
     );
   }
 }

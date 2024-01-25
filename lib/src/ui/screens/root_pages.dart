@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:smart_real_estate_app/src/ui/screens/MapPage.dart';
-
-
 import 'addAllarmPage.dart';
 import 'favoritePage.dart';
 import 'homePage.dart';
@@ -17,7 +15,7 @@ class root_pages extends StatefulWidget {
 
 class _root_pagesState extends State<root_pages> {
 
-  int _bottomNavIndex =1;
+  int _bottomNavIndex =0;
 
   List<Widget> pages = [
     homePage(),
@@ -35,7 +33,7 @@ class _root_pagesState extends State<root_pages> {
 
   List<String> titleList = [
     'Home',
-    'Search',
+    'ChatBox',
     'Favorite',
     'Profile',
   ];
@@ -44,16 +42,29 @@ class _root_pagesState extends State<root_pages> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      backgroundColor: Colors.black,
       appBar: (_bottomNavIndex!=0)
           ? buildAppBar()
           : null,
-      body: IndexedStack(
-        index: _bottomNavIndex,
-        children: pages,
+      body: Stack(
+        children: [
+          Container(
+            margin: EdgeInsets.only(bottom: 30),
+            child: IndexedStack(
+              index: _bottomNavIndex,
+              children: pages,
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            right: 0,
+            left: 0,
+            child: BottomNav(),
+          )
+        ]
       ),
-      bottomNavigationBar: buildBottomNavigationBar(),
       floatingActionButton: buildFloatingActionButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
@@ -77,37 +88,10 @@ class _root_pagesState extends State<root_pages> {
       elevation: 0.0,
     );
   }
-  BottomNavigationBar buildBottomNavigationBar() {
-    return BottomNavigationBar(
-      currentIndex: _bottomNavIndex,
-      type: BottomNavigationBarType.fixed,
-      items: [
-        BottomNavigationBarItem(
-          icon: buildCustomIcon(iconList[0], 0),
-          label: titleList[0],
-        ),
-        BottomNavigationBarItem(
-          icon: buildCustomIcon(iconList[1], 1),
-          label: titleList[1],
-        ),
-        BottomNavigationBarItem(
-          icon: buildCustomIcon(iconList[2], 2),
-          label: titleList[2],
-        ),
-        BottomNavigationBarItem(
-          icon: buildCustomIcon(iconList[3], 3),
-          label: titleList[3],
-        ),
-      ],
-      onTap: (index) {
-        setState(() {
-          _bottomNavIndex = index;
-        });
-      },
-    );
-  }
+
   Widget buildFloatingActionButton() {
     return Container(
+      margin: EdgeInsets.only(bottom: 30),
       width: 60,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
@@ -160,6 +144,43 @@ class _root_pagesState extends State<root_pages> {
       ],
     );
   }
-
+  Widget BottomNav(){
+    return Container(
+      height: kBottomNavigationBarHeight + 10, // Add some extra space for design
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
+      ),
+      child: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
+        currentIndex: _bottomNavIndex, // Set the index of the selected item
+        items: [
+          BottomNavigationBarItem(
+            icon: buildCustomIcon(iconList[0], 0),
+            label: titleList[0],
+          ),
+          BottomNavigationBarItem(
+            icon: buildCustomIcon(iconList[1], 1),
+            label: titleList[1],
+          ),
+          BottomNavigationBarItem(
+            icon: buildCustomIcon(iconList[2], 2),
+            label: titleList[2],
+          ),
+          BottomNavigationBarItem(
+            icon: buildCustomIcon(iconList[3], 3),
+            label: titleList[3],
+          ),
+        ],
+        onTap: (index) {
+          setState(() {
+            _bottomNavIndex = index;
+          });
+        },
+      ),
+    );
+  }
 
 }

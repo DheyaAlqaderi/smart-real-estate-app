@@ -18,7 +18,15 @@ class _login_screenState extends State<login_screen> {
 
   final TextEditingController passwordController = TextEditingController();
   final UserAuthCase _authUseCase = UserAuthCase();
-
+  @override
+  void initState() {
+    super.initState();
+    _authUseCase.setOnLoadingStateChanged(() {
+      setState(() {
+        // Refresh the UI when the loading state changes
+      });
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -57,7 +65,7 @@ class _login_screenState extends State<login_screen> {
                     width: double.infinity,
                     height: 58,
                     child: ElevatedButton(
-                      onPressed: (){
+                      onPressed: () {
                         _authUseCase.login(
                           context,
                           emailController.text,
@@ -67,10 +75,14 @@ class _login_screenState extends State<login_screen> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xFF1F4C6B),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0), // Corner radius
+                          borderRadius: BorderRadius.circular(30.0),
                         ),
                       ),
-                      child: Text(
+                      child: _authUseCase.isLoading
+                          ? CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                      )
+                          : Text(
                         'تسجيل',
                         textAlign: TextAlign.center,
                         style: TextStyle(
