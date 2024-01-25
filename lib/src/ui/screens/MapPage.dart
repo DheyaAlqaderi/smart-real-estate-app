@@ -352,7 +352,7 @@ class _MapPageState extends State<MapPage> {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        return second_section(image: "assets/images/image3.png",name: "hello world", address: "fifth street", price: 2000, rating: 4.5);
+        return second_section(image: "assets/images/image3.png",name: "hello world", address: "fifth street", price: price, rating: 4.5);
       },
     );
   }
