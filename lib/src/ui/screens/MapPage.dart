@@ -167,105 +167,105 @@ class _MapPageState extends State<MapPage> {
 
   Positioned buildPositionedSearchBar() {
     return Positioned(
-          top: 100,
-          right: 0,
-          left: 0,
-          child: Padding(
-            padding: const EdgeInsets.all(11.0),
-            child: Container(
-                width: 327,
-                height: 70,
-                decoration: ShapeDecoration(
-                  color: Colors.white.withOpacity(0.800000011920929),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  shadows: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.3),
-                      spreadRadius: 2,
-                      blurRadius: 5,
-                      offset: Offset(0, 3),
-                    )
-                  ],
-                ),
-              child: Center(
-                child: TextField(
-                  decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.search),
-                      border: InputBorder.none,
-                      hintText: "Search ..."
-                  ),
-                ),
+      top: 100,
+      right: 0,
+      left: 0,
+      child: Padding(
+        padding: const EdgeInsets.all(11.0),
+        child: Container(
+          width: 327,
+          height: 70,
+          decoration: ShapeDecoration(
+            color: Colors.white.withOpacity(0.800000011920929),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(25),
+            ),
+            shadows: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+                spreadRadius: 2,
+                blurRadius: 5,
+                offset: Offset(0, 3),
+              )
+            ],
+          ),
+          child: Center(
+            child: TextField(
+              decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.search),
+                  border: InputBorder.none,
+                  hintText: "Search ..."
               ),
             ),
           ),
-        );
+        ),
+      ),
+    );
   }
 
   Positioned buildPositionedBackIcon() {
     return Positioned(
-          top: 35,
-          right: 19,
-          child: InkWell(
-            onTap: (){
-              Navigator.pop(context);
-            },
-            borderRadius: BorderRadius.circular(25),
-            child: Container(
-              width: 56,
-              height: 56,
+        top: 35,
+        right: 19,
+        child: InkWell(
+          onTap: (){
+            Navigator.pop(context);
+          },
+          borderRadius: BorderRadius.circular(25),
+          child: Container(
+            width: 56,
+            height: 56,
 
-              decoration: ShapeDecoration(
-                color: Colors.white.withOpacity(0.800000011920929),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                shadows: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.3),
-                    spreadRadius: 2,
-                    blurRadius: 5,
-                    offset: Offset(0, 3),
-                  )
-                ],
+            decoration: ShapeDecoration(
+              color: Colors.white.withOpacity(0.800000011920929),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25),
               ),
-              child: Icon(Icons.arrow_forward),
+              shadows: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.3),
+                  spreadRadius: 2,
+                  blurRadius: 5,
+                  offset: Offset(0, 3),
+                )
+              ],
             ),
-          )
-        );
+            child: Icon(Icons.arrow_forward),
+          ),
+        )
+    );
   }
 
   Container buildContainerMap() {
     return Container(
-          child: _isLoaded? GoogleMap(
-            mapType: MapType.normal,
-            initialCameraPosition: _kGooglePlex,
-            onMapCreated: (GoogleMapController c) {
-              _controller = c;
-              changeMapMode(_controller!);
-            },
-            markers: _markers.values.toSet(),
+      child: _isLoaded? GoogleMap(
+        mapType: MapType.normal,
+        initialCameraPosition: _kGooglePlex,
+        onMapCreated: (GoogleMapController c) {
+          _controller = c;
+          changeMapMode(_controller!);
+        },
+        markers: _markers.values.toSet(),
 
-          ): ListView(
-            children: [
-              for(int i=0; i<data.length; i++)
-                Center(
-                  child: Transform.translate(
-                    offset: Offset(
-                      -MediaQuery.of(context).size.width * 2,
-                      -MediaQuery.of(context).size.height * 2,
-                    ),
-                    child: RepaintBoundary(
-                      key: data[i]['globalKey'],
-                      child: data[i]['widget'],
-                    ),
-                  ),
+      ): ListView(
+        children: [
+          for(int i=0; i<data.length; i++)
+            Center(
+              child: Transform.translate(
+                offset: Offset(
+                  -MediaQuery.of(context).size.width * 2,
+                  -MediaQuery.of(context).size.height * 2,
                 ),
-            ],
+                child: RepaintBoundary(
+                  key: data[i]['globalKey'],
+                  child: data[i]['widget'],
+                ),
+              ),
+            ),
+        ],
 
-          ),
-        );
+      ),
+    );
   }
 
   Future<void> _onBuildCompleted() async {
@@ -358,4 +358,3 @@ class _MapPageState extends State<MapPage> {
   }
 
 }
-
