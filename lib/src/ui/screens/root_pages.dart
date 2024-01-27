@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:smart_real_estate_app/src/ui/screens/MapPage.dart';
+import 'package:smart_real_estate_app/src/ui/screens/chat/roomsPage.dart';
 import 'addAllarmPage.dart';
 import 'favoritePage.dart';
 import 'homePage.dart';
@@ -19,7 +20,7 @@ class _root_pagesState extends State<root_pages> {
 
   List<Widget> pages = [
     homePage(),
-    addAllarmPage(),
+    roomsPage(),
     favoritePage(),
     myAccountPage(),
   ];
@@ -64,7 +65,7 @@ class _root_pagesState extends State<root_pages> {
         ]
       ),
       floatingActionButton: buildFloatingActionButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
   }
 
@@ -91,7 +92,7 @@ class _root_pagesState extends State<root_pages> {
 
   Widget buildFloatingActionButton() {
     return Container(
-      margin: EdgeInsets.only(bottom: 30),
+      margin: EdgeInsets.only(bottom: 70),
       width: 60,
       decoration: BoxDecoration(
         shape: BoxShape.circle,

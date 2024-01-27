@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:smart_real_estate_app/src/ui/screens/SplashScreen.dart';
+import 'package:smart_real_estate_app/src/ui/screens/chat/ChatDetailPage.dart';
 
 
 void main() async {

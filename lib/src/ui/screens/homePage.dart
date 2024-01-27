@@ -290,7 +290,6 @@ class _homePageState extends State<homePage> {
                           ),
                           Wrap(
                             crossAxisAlignment: WrapCrossAlignment.start,
-
                             spacing: 30.0, // Adjust the spacing between items
                             runSpacing: 10.0, // Adjust the spacing between lines
                             children: List.generate(
