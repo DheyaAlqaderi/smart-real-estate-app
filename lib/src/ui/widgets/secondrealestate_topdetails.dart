@@ -1,23 +1,39 @@
 import 'package:flutter/material.dart';
 
-class second_section extends StatefulWidget {
-   second_section({this.image,this.name,
-    this.address,
-    this.price,
-    this.rating});
+import '../screens/propertyDetailsPage.dart';
 
-      final String? image;
-      final String? name;
-      final String? address;
-      final dynamic price;
-      final dynamic rating;
+// ignore: must_be_immutable
+class second_section extends StatefulWidget {
+  var isFavorite;
+  final String? image;
+  final String? name;
+  final String? address;
+  final dynamic price;
+  final dynamic rating;
+
+   second_section({
+     this.image,
+     this.name,
+     this.address,
+     this.price,
+     this.rating,
+     required this.isFavorite,
+   });
+
   @override
   State<second_section> createState() => _second_sectionState();
 }
 
 class _second_sectionState extends State<second_section> {
+  late bool _selected;
 
-  bool _selected = true;
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      _selected = widget.isFavorite;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return  secondrealestate_topdetailsState(
@@ -28,21 +44,19 @@ class _second_sectionState extends State<second_section> {
         widget.rating);
   }
 
-
   Widget secondrealestate_topdetailsState(
       String? _image,
       String? _name,
       String? _address,
       dynamic _price,
-      dynamic _rating)
-  {
-
-    dynamic width = 268;
-    dynamic hieght = 156;
-    return TextButton(
-      style: ButtonStyle(
-      ),
-      onPressed: (){},
+      dynamic _rating) {
+    return InkWell(
+      onTap: (){
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => propertyDetailsPage()),
+        );
+      },
       child: Container(
         width: 268,
         height: 156,
@@ -201,7 +215,6 @@ class _second_sectionState extends State<second_section> {
                         color: Colors.grey.withOpacity(0.5),
                         spreadRadius: 2,
                         blurRadius: 5,
-                        offset: Offset(0, 3),
                       ),
                     ],
                   ),

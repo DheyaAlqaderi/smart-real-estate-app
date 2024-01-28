@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget makeItem(String image, String title) {
+Widget topRowList_homepage(String image, String title) {
   return Container(
     width: 270,
     height: 180,
@@ -30,7 +30,6 @@ Widget makeItem(String image, String title) {
               gradient: LinearGradient(
                 begin: Alignment.bottomCenter,
                 colors: [
-
                   Colors.black.withOpacity(0.1),
                   Colors.black.withOpacity(0.6),
                 ]

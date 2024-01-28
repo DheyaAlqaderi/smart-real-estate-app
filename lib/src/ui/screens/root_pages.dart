@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:smart_real_estate_app/src/ui/screens/MapPage.dart';
 import 'package:smart_real_estate_app/src/ui/screens/chat/roomsPage.dart';
-import 'addAllarmPage.dart';
 import 'favoritePage.dart';
 import 'homePage.dart';
 import 'myAccountPage.dart';

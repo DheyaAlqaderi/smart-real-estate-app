@@ -113,6 +113,8 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
   }
   final ScrollController _scrollController = ScrollController();
   @override
+
+
   void initState() {
     super.initState();
     // Schedule the scroll to the end after the first frame is built
@@ -129,35 +131,36 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
       appBar: ChatDetailPageAppBar(),
       body: Stack(
         children: <Widget>[
-
-          Expanded(
-            child: SingleChildScrollView(
-              controller: _scrollController,
-              padding: EdgeInsets.only(bottom: 150),
-              child: ListView.builder(
+          Positioned(
+            top: 0,
+            right: 0,
+            left: 0,
+            bottom: 80,
+            child: ListView.builder(
+                controller: _scrollController,
                 itemCount: chatMessage.length,
-                shrinkWrap: true,
-                padding: EdgeInsets.only(top: 10,bottom: 10),
-                physics: NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index){
+                padding: EdgeInsets.only(bottom: 80),
+                physics: BouncingScrollPhysics(),
+                itemBuilder: (context, index) {
                   return ChatBubble(
                     chatMessage: chatMessage[index],
                   );
                 },
-              ),
             ),
           ),
-          Align(
-            alignment: Alignment.bottomLeft,
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
             child: Container(
-              padding: EdgeInsets.only(left: 8,bottom: 10),
+              padding: EdgeInsets.symmetric(horizontal: 8),
               height: 80,
-              width: double.infinity,
               color: Colors.white,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       showModal();
                     },
                     child: Container(
@@ -167,36 +170,22 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                         color: Color(0xFF234F68),
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      child: Icon(Icons.add,color: Colors.white,size: 21,),
+                      child: Icon(Icons.add, color: Colors.white, size: 21),
                     ),
                   ),
-                  SizedBox(width: 16,),
-                ],
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Container(
-              margin: const EdgeInsets.only(left: 50, bottom: 16,right: 6),
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: Row(
-                children: [
                   Expanded(
-                    child: TextFormField(
-                      controller: controller,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Type a message...",
-                        hintStyle: TextStyle(color: Colors.grey[400]),
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 16),
+                      child: TextFormField(
+                        controller: controller,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Type a message...",
+                          hintStyle: TextStyle(color: Colors.grey[400]),
+                        ),
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
                   IconButton(
                     onPressed: () {
                       _onPressSend();
@@ -206,25 +195,17 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                   ),
                 ],
               ),
-            )
-          )
+            ),
+          ),
         ],
       ),
+
     );
   }
-  final FocusNode _focusNode = FocusNode();
+
 void _onPressSend() {
   if (controller.text.isNotEmpty) {
     setState(() {
-      _focusNode.addListener(() {
-        if (!_focusNode.hasFocus) {
-          _scrollController.animateTo(
-            _scrollController.position.maxScrollExtent,
-            duration: Duration(milliseconds: 300),
-            curve: Curves.easeOut,
-          );
-        }
-      });
       chatMessage.add(
           ChatMessage(message: controller.text, type: MessageType.Sender));
       controller.clear();

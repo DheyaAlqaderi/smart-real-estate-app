@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 class exploreProperty extends StatefulWidget {
-   exploreProperty({this.image, this.name, this.address, this.price, this.rating});
+   exploreProperty({this.image, this.name, this.address, this.price, this.rating, required this.isFavorite});
 
   final String? image;
   final String? name;
   final String? address;
   final dynamic price;
   final dynamic rating;
+  var isFavorite;
 
   @override
   State<exploreProperty> createState() => _explorePropertyState();
@@ -15,6 +16,16 @@ class exploreProperty extends StatefulWidget {
 
 class _explorePropertyState extends State<exploreProperty> {
   bool _selected = true;
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      if(widget.isFavorite != null)
+        _selected = widget.isFavorite;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
