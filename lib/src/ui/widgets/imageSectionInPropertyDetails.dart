@@ -10,6 +10,6 @@ class imageSectionInPropertyDetails extends StatefulWidget {
 class _imageSectionInPropertyDetailsState extends State<imageSectionInPropertyDetails> {
   @override
   Widget build(BuildContext context) {
-    return const ;
+    return const Scaffold();
   }
 }

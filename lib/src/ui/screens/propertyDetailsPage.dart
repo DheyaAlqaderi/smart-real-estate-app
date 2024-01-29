@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/detailsPropertySection.dart';
+
 class propertyDetailsPage extends StatefulWidget {
   var isFavorite;
   final String? image;
@@ -23,7 +25,6 @@ class _propertyDetailsPageState extends State<propertyDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.yellow[200],
       body: Padding(
         padding: EdgeInsets.all(0),
         child: SingleChildScrollView(
@@ -35,7 +36,7 @@ class _propertyDetailsPageState extends State<propertyDetailsPage> {
 
               // 2. details property section
 
-              // detailsPropertySection()
+              detailsPropertySection(name: widget.name, address: widget.address, price: widget.price,)
 
               // 3.
               // 4.
@@ -113,7 +114,7 @@ class _propertyDetailsPageState extends State<propertyDetailsPage> {
                 child: Center(
                   child: IconButton(
                     icon: Icon(Icons.favorite, size: 25,),
-                    color: widget.isFavorite? Colors.white: Colors.red,
+                    color: (widget.isFavorite)? Colors.white: Colors.red,
                     onPressed: () {
                       setState(() {
                         _selected ? _selected=false : _selected=true;
