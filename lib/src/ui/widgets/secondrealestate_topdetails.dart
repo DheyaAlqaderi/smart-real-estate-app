@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../screens/propertyDetailsPage.dart';
 
 // ignore: must_be_immutable
@@ -11,14 +10,14 @@ class second_section extends StatefulWidget {
   final dynamic price;
   final dynamic rating;
 
-   second_section({
+  second_section({
      this.image,
      this.name,
      this.address,
      this.price,
      this.rating,
      required this.isFavorite,
-   });
+  });
 
   @override
   State<second_section> createState() => _second_sectionState();
@@ -54,7 +53,14 @@ class _second_sectionState extends State<second_section> {
       onTap: (){
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => propertyDetailsPage()),
+          MaterialPageRoute(builder: (context) => propertyDetailsPage(
+            image: widget.image,
+            price: widget.price,
+            address: widget.address,
+            name: widget.name,
+            rating: widget.rating,
+            isFavorite: widget.isFavorite,
+          )),
         );
       },
       child: Container(

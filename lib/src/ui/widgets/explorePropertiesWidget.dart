@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../screens/propertyDetailsPage.dart';
+
 class exploreProperty extends StatefulWidget {
    exploreProperty({this.image, this.name, this.address, this.price, this.rating, required this.isFavorite});
 
@@ -28,82 +30,97 @@ class _explorePropertyState extends State<exploreProperty> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-          width: 160,
-          height: 231,
-          decoration: ShapeDecoration(
-            color: Color(0xFFF5F4F7),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25),
+    return InkWell(
+      onTap: (){
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => propertyDetailsPage(
+            image: widget.image,
+            price: widget.price,
+            address: widget.address,
+            name: widget.name,
+            rating: widget.rating,
+            isFavorite: widget.isFavorite,
+          )),
+        );
+      },
+      child: Container(
+            width: 160,
+            height: 231,
+            decoration: ShapeDecoration(
+              color: Color(0xFFF5F4F7),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25),
+              ),
             ),
-          ),
-          child: Column(
-            children: [
-              image_section(widget.image.toString(), widget.price),
-              SizedBox(height: 5,),
-              Padding(
-                padding:  EdgeInsets.all(5.0),
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    widget.name.toString(),
-                    textAlign: TextAlign.right,
-                    maxLines: 1, // Set the maximum number of lines
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: Color(0xFF242B5C),
-                      fontSize: 12,
-                      fontFamily: 'Raleway',
-                      fontWeight: FontWeight.w700,
+            child: Column(
+              children: [
+                image_section(widget.image.toString(), widget.price),
+                SizedBox(height: 5,),
+                Padding(
+                  padding:  EdgeInsets.all(5.0),
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      widget.name.toString(),
+                      textAlign: TextAlign.right,
+                      maxLines: 1, // Set the maximum number of lines
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: Color(0xFF242B5C),
+                        fontSize: 12,
+                        fontFamily: 'Raleway',
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: Align(
-                  alignment: Alignment.centerRight,
+                Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                            widget.address.toString(),
+                            maxLines: 1, // Set the maximum number of lines
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: Color(0xFF53577A),
+                              fontSize: 8,
+                              fontFamily: 'Raleway',
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        Icon(Icons.location_on_sharp,color: Colors.grey, size: 10,)
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(3.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                          widget.address.toString(),
-                          maxLines: 1, // Set the maximum number of lines
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: Color(0xFF53577A),
-                            fontSize: 8,
-                            fontFamily: 'Raleway',
-                            fontWeight: FontWeight.w400,
-                          ),
+                        '4.5 ',
+                        style: TextStyle(
+                          color: Color(0xFF53577A),
+                          fontSize: 8,
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w700,
+                          height: 0.12,
                         ),
-                      Icon(Icons.location_on_sharp,color: Colors.grey, size: 10,)
+                      ),
+
+                      Icon(Icons.star, color: Colors.orange, size: 10,)
                     ],
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(3.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      '4.5 ',
-                      style: TextStyle(
-                        color: Color(0xFF53577A),
-                        fontSize: 8,
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.w700,
-                        height: 0.12,
-                      ),
-                    ),
-
-                    Icon(Icons.star, color: Colors.orange, size: 10,)
-                  ],
-                ),
-              ),
-            ],
-          )
+              ],
+            )
+      ),
     );
   }
 

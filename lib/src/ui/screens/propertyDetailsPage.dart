@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
 class propertyDetailsPage extends StatefulWidget {
-  const propertyDetailsPage({super.key});
+  var isFavorite;
+  final String? image;
+  final String? name;
+  final String? address;
+  final dynamic price;
+  final dynamic rating;
+   propertyDetailsPage({this.image, this.name, this.address, this.price, this.rating, this.isFavorite});
 
   @override
   State<propertyDetailsPage> createState() => _propertyDetailsPageState();
@@ -25,7 +31,7 @@ class _propertyDetailsPageState extends State<propertyDetailsPage> {
           child: Column(
             children: [
               // 1. image section
-              imageSectionWidget(),
+              imageSectionWidget(image: widget.image.toString()),
 
               // 2. details property section
 
@@ -43,7 +49,7 @@ class _propertyDetailsPageState extends State<propertyDetailsPage> {
   }
 
   // 1. image section
-  Widget imageSectionWidget(){
+  Widget imageSectionWidget({required String image}){
     return Container(
       height: 514,
       width: double.infinity,
@@ -54,7 +60,7 @@ class _propertyDetailsPageState extends State<propertyDetailsPage> {
             width: double.maxFinite,
             decoration: ShapeDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/image1.png"),
+                image: AssetImage(image.toString()),
                 fit: BoxFit.cover,
               ),
               shape: RoundedRectangleBorder(
@@ -107,7 +113,7 @@ class _propertyDetailsPageState extends State<propertyDetailsPage> {
                 child: Center(
                   child: IconButton(
                     icon: Icon(Icons.favorite, size: 25,),
-                    color: _selected? Colors.white: Colors.red,
+                    color: widget.isFavorite? Colors.white: Colors.red,
                     onPressed: () {
                       setState(() {
                         _selected ? _selected=false : _selected=true;
