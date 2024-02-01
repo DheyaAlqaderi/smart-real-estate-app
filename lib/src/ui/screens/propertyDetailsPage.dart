@@ -9,7 +9,14 @@ class propertyDetailsPage extends StatefulWidget {
   final String? address;
   final dynamic price;
   final dynamic rating;
-   propertyDetailsPage({this.image, this.name, this.address, this.price, this.rating, this.isFavorite});
+   propertyDetailsPage({
+     this.image,
+     this.name,
+     this.address,
+     this.price,
+     this.rating,
+     this.isFavorite
+   });
 
   @override
   State<propertyDetailsPage> createState() => _propertyDetailsPageState();
@@ -25,26 +32,68 @@ class _propertyDetailsPageState extends State<propertyDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(0),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            children: [
-              // 1. image section
-              imageSectionWidget(image: widget.image.toString()),
+      body: Stack(
+        children: [
+          Container(
+            child: Padding(
+              padding: EdgeInsets.all(0),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  children: [
+                    // 1. image section
+                    imageSectionWidget(image: widget.image.toString()),
 
-              // 2. details property section
+                    // 2. details property section
+                    detailsPropertySection(
+                      name: widget.name,
+                      address: widget.address,
+                      price: widget.price,),
 
-              detailsPropertySection(name: widget.name, address: widget.address, price: widget.price,)
+                    SizedBox(height: 80,)
 
-              // 3.
-              // 4.
-              // 5.
-              // 6.
-            ],
+                    // 3.
+                    // 4.
+                    // 5.
+                    // 6.
+                  ],
+                ),
+              ),
+            ),
           ),
-        ),
+          Positioned(
+            bottom: 0,
+            right: 0,
+            left: 0,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: InkWell(
+                onTap: (){},
+                child:Container(
+                  height: 58.05,
+                  width: double.infinity,
+                  decoration: ShapeDecoration(
+                    color: Color(0xFF1F4C6B),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "طلب الدردشه",
+                      style: TextStyle(
+                        fontSize: 25.0,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: "Raleway",
+                        color: Colors.white
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          )
+        ]
       ),
     );
   }
