@@ -33,5 +33,10 @@ class LocalDatabase {
       return null;
     }
   }
+
+  Future<void> deleteToken() async {
+    // Delete all rows from the tokens table
+    await _database.delete('tokens');
+  }
 }
 

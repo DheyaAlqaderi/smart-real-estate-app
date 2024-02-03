@@ -23,5 +23,15 @@ class Managedb {
     final String? retrievedToken = await localDatabase.getToken();
     return retrievedToken;
   }
+
+  static Future<void> deleteToken() async {
+    WidgetsFlutterBinding.ensureInitialized();
+
+    // Initialize the local database
+    final LocalDatabase localDatabase = LocalDatabase();
+    await localDatabase.initialize();
+    // Delete the token
+    await localDatabase.deleteToken();
+  }
 }
 
