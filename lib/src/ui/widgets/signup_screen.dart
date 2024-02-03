@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../services/use_case/UserAuthCase.dart';
+
 class signup_screen extends StatefulWidget {
   signup_screen({
     super.key,
@@ -19,6 +21,17 @@ class _signup_screenState extends State<signup_screen> {
   final TextEditingController emailController = TextEditingController();
 
   final TextEditingController passwordController = TextEditingController();
+
+  final UserAuthCase _authUseCase = UserAuthCase();
+  @override
+  void initState() {
+    super.initState();
+    _authUseCase.setOnLoadingStateChanged(() {
+      setState(() {
+        // Refresh the UI when the loading state changes
+      });
+    });
+  }
 
 
   bool isConditionAccepted = false;
@@ -108,6 +121,13 @@ class _signup_screenState extends State<signup_screen> {
                     height: 58,
                     child: ElevatedButton(
                       onPressed: (){
+                        _authUseCase.createAccount(
+                          context,
+                          nameController.text,
+                          phoneController.text,
+                          emailController.text,
+                          passwordController.text,
+                        );
 
                       },
                       style: ElevatedButton.styleFrom(
@@ -116,7 +136,11 @@ class _signup_screenState extends State<signup_screen> {
                           borderRadius: BorderRadius.circular(30.0), // Corner radius
                         ),
                       ),
-                      child: Text(
+                      child: _authUseCase.isLoading
+                          ? CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                      )
+                          : Text(
                         'أنشاء حساب',
                         textAlign: TextAlign.center,
                         style: TextStyle(

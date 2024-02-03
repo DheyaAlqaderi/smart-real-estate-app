@@ -1,3 +1,5 @@
+import 'package:smart_real_estate_app/src/services/models/User/user_return_value.dart';
+
 abstract class Person {
   String userName;
   String phoneNumber;
@@ -12,7 +14,7 @@ abstract class Person {
   });
 
   // Operations
-  void createAccount(String userName, String phoneNumber, String email, String password);
+  Future<User?> createAccount(String userName, String phoneNumber, String email, String password);
   Future<String?> login(String userName, String password);
   void logout();
   void forgotEmailPassword(String email, String token);

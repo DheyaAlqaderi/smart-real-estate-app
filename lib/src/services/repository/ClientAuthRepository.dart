@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:smart_real_estate_app/src/services/models/User/ClientAbstract.dart';
+import 'package:smart_real_estate_app/src/services/models/User/user_return_value.dart';
 
 class ClientAuthRepository extends Client {
   ClientAuthRepository({
@@ -38,8 +39,33 @@ class ClientAuthRepository extends Client {
   }
 
   @override
-  void createAccount(String userName, String phoneNumber, String email, String password) {
-    // TODO: implement createAccount
+  Future<User?> createAccount(String userName, String phoneNumber, String email, String password) async {
+    final String _apiUrl = 'http://192.168.0.193:8005/api/auth/signup/';
+    try {
+      final response = await http.post(
+        Uri.parse(_apiUrl),
+        body: {
+          "email": email,
+          "phone_number": phoneNumber,
+          "username": userName,
+          "password": password,
+          "name": userName,
+          "image": "no Image"
+        },
+      );
+
+      if(response.statusCode == 200) {
+        final Map<String, dynamic> data = json.decode(response.body);
+        final User user = User.fromJson(data);
+
+        return user;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      print('Error: $error');
+      return null;
+    }
   }
 
   @override
