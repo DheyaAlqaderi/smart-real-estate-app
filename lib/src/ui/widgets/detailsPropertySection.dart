@@ -524,6 +524,7 @@ class _detailsPropertySectionState extends State<detailsPropertySection> {
   void _onMapCreated(GoogleMapController controller) {
     _controller = controller;
     _addMarker(LatLng(14.5678337, 43.2232772), 'Marker Title', 'Marker Description');
+
   }
   void _addMarker(LatLng position, String title, String snippet) {
     setState(() {

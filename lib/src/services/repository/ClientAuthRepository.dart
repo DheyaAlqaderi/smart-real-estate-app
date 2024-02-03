@@ -13,19 +13,19 @@ class ClientAuthRepository extends Client {
   @override
   Future<String?> login(String userName, String password) async {
 
-    final String _apiUrl = 'https://dummyjson.com/auth/login';
+    final String _apiUrl = 'http://192.168.0.193:8005/api/auth/login/';
     try {
       final response = await http.post(
         Uri.parse(_apiUrl),
         body: {
-          'username': userName,
-          'password': password,
+          "username": userName,
+          "password": password,
         },
       );
 
       if(response.statusCode == 200) {
         final Map<String, dynamic> data = json.decode(response.body);
-        final String token = data['token'];
+        final String token = data["token"];
 
         return token;
       } else {
