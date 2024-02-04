@@ -37,14 +37,16 @@ class _detailsPropertySectionState extends State<detailsPropertySection> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(5.0),
       child: Column(
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 width: 180.0,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       '${widget.price} الف ',
@@ -72,10 +74,10 @@ class _detailsPropertySectionState extends State<detailsPropertySection> {
                 ),
               ),
 
-              Spacer(flex: 2,),
               Container(
                 width: 190.0,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
                       '${widget.name}',

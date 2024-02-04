@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_real_estate_app/src/ui/screens/homePage.dart';
 import 'package:smart_real_estate_app/src/ui/screens/root_pages.dart';
-
-
 import '../../services/models/onBoanding_model.dart';
 import 'login_signup_page.dart';
 

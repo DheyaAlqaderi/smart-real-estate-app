@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_real_estate_app/src/ui/screens/property_images.dart';
 
 import '../widgets/detailsPropertySection.dart';
 
@@ -29,6 +30,18 @@ class _propertyDetailsPageState extends State<propertyDetailsPage> {
     'assets/images/Image2.png',
     'assets/images/me.JPG',
   ];
+  // handle when clicking the marker
+  void showBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      builder: (BuildContext context) {
+        return PropertyImages();
+      },
+    );
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,38 +113,43 @@ class _propertyDetailsPageState extends State<propertyDetailsPage> {
 
   // 1. image section
   Widget imageSectionWidget({required String image}){
-    return Container(
-      height: 514,
-      width: double.infinity,
-      child: Stack(
-        children: [
-          Container(
-            height: 514,
-            width: double.maxFinite,
-            decoration: ShapeDecoration(
-              image: DecorationImage(
-                image: AssetImage(image.toString()),
-                fit: BoxFit.cover,
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(15),
-                  bottomRight: Radius.circular(15),
+    return InkWell(
+      onTap: (){
+        showBottomSheet( context);
+      },
+      child: Container(
+        height: 514,
+        width: double.infinity,
+        child: Stack(
+          children: [
+            Container(
+              height: 514,
+              width: double.maxFinite,
+              decoration: ShapeDecoration(
+                image: DecorationImage(
+                  image: AssetImage(image.toString()),
+                  fit: BoxFit.cover,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(15),
+                    bottomRight: Radius.circular(15),
+                  ),
                 ),
               ),
             ),
-          ),
 
-          // 1. appbar section
-          appbarSection(),
+            // 1. appbar section
+            appbarSection(),
 
-          // 2. feature images and the rest images
-          restImageSection(),
+            // 2. feature images and the rest images
+            restImageSection(),
 
-          // 3. ratings and type
-          ratingType(rating: '4.5'),
+            // 3. ratings and type
+            ratingType(rating: '4.5'),
 
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -269,7 +287,7 @@ class _propertyDetailsPageState extends State<propertyDetailsPage> {
       ),
       child: (check)?TextButton(
         onPressed: (){
-
+          showBottomSheet(context);
         },
         child: Container(
           decoration: BoxDecoration(

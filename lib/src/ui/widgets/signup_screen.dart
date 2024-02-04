@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../services/use_case/UserAuthCase.dart';
+
+
+final _formKey = GlobalKey<FormState>();
+
 
 class signup_screen extends StatefulWidget {
   signup_screen({
@@ -23,6 +26,33 @@ class _signup_screenState extends State<signup_screen> {
   final TextEditingController passwordController = TextEditingController();
 
   final UserAuthCase _authUseCase = UserAuthCase();
+
+  String? validateEmail(String? email) {
+    // Regular expression for email validation
+    final RegExp emailRegex =
+    RegExp(r"^[a-zA-Z0-9.!#$%&\'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$");
+
+    if (email!.isEmpty) {
+      return 'Please enter an email address.';
+    } else if (!emailRegex.hasMatch(email)) {
+      return 'Please enter a valid email address.';
+    }
+
+    return null; // Return empty string if email is valid
+  }
+  String? validateYemeniPhoneNumber(String? phoneNumber) {
+    // Regular expression for Yemeni phone number validation
+    final RegExp phoneRegex = RegExp(r'^009677[3,7,8,1,0]{1}[0-9]{7}$');
+
+    if (phoneNumber!.isEmpty) {
+      return 'Please enter a phone number.';
+    } else if (!phoneRegex.hasMatch(phoneNumber)) {
+      return 'Please enter a valid Yemeni phone number';
+    }
+
+    return null; // Return empty string if phone number is valid
+  }
+
   @override
   void initState() {
     super.initState();
@@ -42,6 +72,7 @@ class _signup_screenState extends State<signup_screen> {
       child: Column(
         children: [
           Form(
+            key: _formKey,
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -54,6 +85,7 @@ class _signup_screenState extends State<signup_screen> {
                         borderRadius: BorderRadius.circular(15.0),
                       ),
                     ),
+                    validator: (name) => (name!.isEmpty)?'please enter your name':null,
                   ),
                   SizedBox(height: 20),
                   TextFormField(
@@ -64,7 +96,14 @@ class _signup_screenState extends State<signup_screen> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15.0),
                       ),
+                      prefixText: '+967'
                     ),
+                    validator: (value) {
+                      print(value);
+                      final formattedPhoneNumber = "00967$value"; // Remove '+967' before validation
+                      print(formattedPhoneNumber);
+                      return validateYemeniPhoneNumber(formattedPhoneNumber);
+                    },
                   ),
                   SizedBox(height: 20),
                   TextFormField(
@@ -76,6 +115,7 @@ class _signup_screenState extends State<signup_screen> {
                         borderRadius: BorderRadius.circular(15.0),
                       ),
                     ),
+                    validator: validateEmail,
                   ),
                   SizedBox(height: 20),
                   TextFormField(
@@ -87,6 +127,7 @@ class _signup_screenState extends State<signup_screen> {
                         borderRadius: BorderRadius.circular(15.0),
                       ),
                     ),
+                    validator: (password) => (password!.isEmpty)?'please enter a password':null,
                   ),
                   SizedBox(height: 10.0),
                   Row(
@@ -121,13 +162,16 @@ class _signup_screenState extends State<signup_screen> {
                     height: 58,
                     child: ElevatedButton(
                       onPressed: (){
-                        _authUseCase.createAccount(
-                          context,
-                          nameController.text,
-                          phoneController.text,
-                          emailController.text,
-                          passwordController.text,
-                        );
+                        if(_formKey.currentState!.validate()){
+                          _authUseCase.createAccount(
+                            context,
+                            nameController.text.trim(),
+                            phoneController.text.trim(),
+                            emailController.text.trim(),
+                            passwordController.text.trim(),
+                          );
+                        }
+
 
                       },
                       style: ElevatedButton.styleFrom(

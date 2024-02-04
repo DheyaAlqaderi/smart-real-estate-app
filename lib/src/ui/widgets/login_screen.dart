@@ -3,6 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:smart_real_estate_app/src/services/use_case/UserAuthCase.dart';
 
 
+final _fromKey = GlobalKey<FormState>();
+
 class login_screen extends StatefulWidget {
   const login_screen({
     super.key,
@@ -18,6 +20,22 @@ class _login_screenState extends State<login_screen> {
 
   final TextEditingController passwordController = TextEditingController();
   final UserAuthCase _authUseCase = UserAuthCase();
+
+  String? validateEmail(String? email) {
+    // Regular expression for email validation
+    final RegExp emailRegex =
+        RegExp(r"^[a-zA-Z0-9.!#$%&\'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$");
+
+    if (email!.isEmpty) {
+      return 'Please enter an email address.';
+    } else if (!emailRegex.hasMatch(email)) {
+      return 'Please enter a valid email address.';
+    }
+
+    return null; // Return empty string if email is valid
+  }
+
+
   @override
   void initState() {
     super.initState();
@@ -34,6 +52,7 @@ class _login_screenState extends State<login_screen> {
       child: Column(
         children: [
           Form(
+            key: _fromKey,
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -47,17 +66,19 @@ class _login_screenState extends State<login_screen> {
                         borderRadius: BorderRadius.circular(15.0),
                       ),
                     ),
+                    validator: validateEmail,
                   ),
                   SizedBox(height: 20),
                   TextFormField(
                     controller: passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
-                      labelText: "joh", // Arabic: 'Password'
+                      labelText: "password", // Arabic: 'Password'
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15.0),
                       ),
                     ),
+                    validator: (password) => (password!.isEmpty)? 'please fill the password': null,
                   ),
                   SizedBox(height: 10.0),
                   Container(
@@ -66,11 +87,14 @@ class _login_screenState extends State<login_screen> {
                     height: 58,
                     child: ElevatedButton(
                       onPressed: () {
-                        _authUseCase.login(
-                          context,
-                          emailController.text,
-                          passwordController.text,
-                        );
+                        if(_fromKey.currentState!.validate()){
+                          _authUseCase.login(
+                            context,
+                            emailController.text.trim(),
+                            passwordController.text.trim(),
+                          );
+                        }
+
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xFF1F4C6B),
@@ -96,18 +120,20 @@ class _login_screenState extends State<login_screen> {
                     ),
                   ),
                   SizedBox(height: 20.0),
-                  FutureBuilder<String?>(
-                    future:null,
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Center(child: CircularProgressIndicator());
-                      } else if (snapshot.hasError) {
-                        return Center(child: Text('Error: ${snapshot.error}'));
-                      } else {
-                        final String? retrievedToken = snapshot.data;
-                        return Center(child: Text('Retrieved Token: ${retrievedToken ?? "No token available"}'));
-                      }
+                  InkWell(
+                    onTap: (){
+
                     },
+                    child: Text(
+                      'هل نسيت كلمة المرور',
+                      style: TextStyle(
+                        color: Colors.indigo,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Inter'
+                      ),
+
+                    ),
                   ),
                   SizedBox(height: 30.0),
                   Text(
