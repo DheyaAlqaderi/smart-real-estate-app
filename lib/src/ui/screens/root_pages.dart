@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:smart_real_estate_app/src/ui/screens/MapPage.dart';
 import 'package:smart_real_estate_app/src/ui/screens/chat/roomsPage.dart';
+import 'package:smart_real_estate_app/src/ui/screens/profile_page.dart';
 import 'favoritePage.dart';
 import 'homePage.dart';
-import 'myAccountPage.dart';
 
 class root_pages extends StatefulWidget {
   const root_pages({super.key});
@@ -21,7 +21,7 @@ class _root_pagesState extends State<root_pages> {
     homePage(),
     roomsPage(),
     favoritePage(),
-    myAccountPage(),
+    ProfilePage(),
   ];
 
   List<SvgPicture> iconList = [
