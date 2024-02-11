@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:photo_view/photo_view.dart';
 
 class PropertyImages extends StatefulWidget {
   const PropertyImages({super.key});
@@ -47,23 +48,31 @@ class _PropertyImagesState extends State<PropertyImages> {
 
           Container(
             child: PageView.builder(
-                controller: _controller,
-                itemCount: images.length,
-                onPageChanged: (int index) {
-                  setState(() {
-                    currentIndex = index;
-                  });
-                },
-                itemBuilder: ( _,i) {
-                  return Image.asset(
-                      images[i].toString(),
-                      fit: BoxFit.cover,
-                      height: double.infinity,
-                      width:double.infinity
-                  );
-                }
+              controller: _controller,
+              itemCount: images.length,
+              onPageChanged: (int index) {
+                setState(() {
+                  currentIndex = index;
+                });
+              },
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: PhotoView(
+                    imageProvider: AssetImage(images[index].toString()),
+                    minScale: PhotoViewComputedScale.contained * 0.8,
+                    maxScale: PhotoViewComputedScale.covered * 2.0,
+                    backgroundDecoration: BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    customSize: MediaQuery.of(context).size,
+                  ),
+                );
+              },
             ),
           ),
+
 
 
           // the back arrow button
@@ -116,7 +125,7 @@ class _PropertyImagesState extends State<PropertyImages> {
                     height: 83.0,
                     width: 40.0,
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.300000011920929),
+                      color: Colors.white.withOpacity(0.300000011920929),
                       borderRadius: BorderRadius.only(
                         topRight: Radius.circular(15),
                         bottomRight: Radius.circular(15)
@@ -141,7 +150,7 @@ class _PropertyImagesState extends State<PropertyImages> {
                     height: 83.0,
                     width: 40.0,
                     decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.300000011920929),
+                        color: Colors.white.withOpacity(0.300000011920929),
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(15),
                             bottomLeft: Radius.circular(15)
